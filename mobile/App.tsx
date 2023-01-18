@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
+
 import { 
   useFonts, 
   Inter_400Regular, 
@@ -8,6 +9,8 @@ import {
 } from '@expo-google-fonts/inter'
 
 import { Loading } from './src/components/Loading';
+
+import { Home } from './src/screens/Home';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,22 +27,9 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Hello World! React Native!</Text>
+    <>
+      <Home />
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
-    </View>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#09090A',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    color: '#FFF',
-    fontFamily: 'Inter_800ExtraBold'
-  }
-});
