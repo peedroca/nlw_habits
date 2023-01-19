@@ -3,6 +3,7 @@ import { Text, View, ScrollView } from "react-native";
 import { Header } from "../components/Header";
 import { HabbitDay, DAY_SIZE } from "../components/HabbitDay";
 import { generateDatesFromYearBeginning } from "../utils/generate-dates-from-year-beginning";
+import { useNavigation } from "@react-navigation/native";
 
 const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 const datesFromYearStart = generateDatesFromYearBeginning();
@@ -10,6 +11,8 @@ const minimumSummaryDatesSize = 18 * 7;
 const amountOfDaysToFill = minimumSummaryDatesSize - datesFromYearStart.length;
 
 export function Home() {
+    const { navigate } = useNavigation();
+
     return (
         <View className="flex-1 bg-background px-8 pt-16">
             <Header />
@@ -37,6 +40,7 @@ export function Home() {
                         datesFromYearStart.map(date => (
                             <HabbitDay 
                                 key={date.toISOString()}
+                                onPress={() => navigate('habit', { date: date.toISOString() })}
                             />
                         ))    
                     }
@@ -46,6 +50,7 @@ export function Home() {
                             length: amountOfDaysToFill
                         }).map((_, i) => (
                             <View 
+                                key={i}
                                 className="bg-zinc-900 rounded-lg border-2 m-1 border-zinc-800 opacity-40"
                                 style={{ width: DAY_SIZE, height: DAY_SIZE}}
                             />
